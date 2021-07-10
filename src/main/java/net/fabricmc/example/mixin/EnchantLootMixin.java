@@ -1,6 +1,6 @@
 package net.fabricmc.example.mixin;
 
-import net.minecraft.village;
+import net.minecraft.loot.function;
 import java.lang.Math.*;
 import java.util.Random;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,16 +13,12 @@ import net.minecraft.util.math.MathHelper;
 public class EnchantLootMixin {
 	@Inject(method = "addEnchantmentToStack", at = @At(value = "FIELD", target = "net/minecraft/loot/function/EnchantRandomlyLootFunction.i:I", ordinal = 1))
 	private void addEnchantmentToStack(CallbackInfo ci) {
-    i = MathHelper.nextInt(
-			random,
-			enchantment.getMinLevel(),
-			Math.min(
-				enchantment.getMaxLevel(),
-				Math.floor(
-					Math.log(
-						1d/(1-MathHelper.nextDouble(random, 0, 1))
-					) * 16 + 1
-				)
+    i = Math.min(
+			enchantment.getMaxLevel(),
+			Math.floor(
+				Math.log(
+					1d/(1-MathHelper.nextDouble(random, 0, 1))
+				) * 16 + 1
 			)
 		);
 	}

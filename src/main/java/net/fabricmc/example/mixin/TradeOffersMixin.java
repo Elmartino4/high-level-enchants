@@ -21,7 +21,7 @@ public class TradeOfferMixin {
 				Math.floor(
 					Math.log(
 						1d/(1-MathHelper.nextDouble(random, 0, 1))
-					) * (experience + 20)^2/150 + 1
+					) * Math.pow(experience + 20, 2)/60 + 1
 				)
 			)
 		);
