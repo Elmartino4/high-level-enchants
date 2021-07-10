@@ -9,19 +9,19 @@ import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.util.math.MathHelper;
 
-@Mixin(TradeOffers$EnchantBookFactory.class)
-public class TradeOfferMixin {
-	@Inject(method = "create", at = @At(value = "FIELD", target = "net/minecraft/village/TradeOffer$EnchantBookFactory.i:I", ordinal = 1))
-	private void create(CallbackInfo ci) {
+@Mixin(EnchantRandomlyLootFunction.class)
+public class EnchantLootMixin {
+	@Inject(method = "addEnchantmentToStack", at = @At(value = "FIELD", target = "net/minecraft/loot/function/EnchantRandomlyLootFunction.i:I", ordinal = 1))
+	private void addEnchantmentToStack(CallbackInfo ci) {
     i = MathHelper.nextInt(
 			random,
-			lv.getMinLevel(),
+			enchantment.getMinLevel(),
 			Math.min(
-				lv.getMaxLevel(),
+				enchantment.getMaxLevel(),
 				Math.floor(
 					Math.log(
 						1d/(1-MathHelper.nextDouble(random, 0, 1))
-					) * (experience + 20)^2/150 + 1
+					) * 16 + 1
 				)
 			)
 		);
