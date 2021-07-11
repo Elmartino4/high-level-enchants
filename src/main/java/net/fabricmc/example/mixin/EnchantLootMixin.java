@@ -18,7 +18,7 @@ public class EnchantLootMixin {
 			Math.floor(
 				Math.log(
 					1d/(1-MathHelper.nextDouble(random, 0, 1))
-				) * 16 + 1
+				) * 7 + 1
 			)
 		);
 	}
