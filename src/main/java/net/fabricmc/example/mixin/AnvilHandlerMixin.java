@@ -8,7 +8,7 @@ import net.minecraft.screen;
 @Mixin(AnvilScreenHandler.class)
 public class AnvilHandlerMixin {
 	@Inject(method = "getNextCost", at = @At("RETURN"))
-	private void getNextCost(CallbackInfo ci) {
-    return Math.roof((double)cost * 1.3 + 0.2);
+	private int getNextCost(int cost, CallbackInfo ci) {
+    return Math.ceiling((double)cost * 1.3 + 0.2);
 	}
 }

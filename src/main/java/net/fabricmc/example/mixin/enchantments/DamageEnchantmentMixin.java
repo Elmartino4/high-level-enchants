@@ -7,7 +7,7 @@ import net.minecraft.enchantment;
 @Mixin(DamageEnchantment.class)
 public class DamageEnchantmentMixin {
 	@Inject(method = "getMaxLevel", at = @At("RETURN"))
-	private void getMaxLevel(CallbackInfo ci) {
+	private int getMaxLevel(CallbackInfo ci) {
     return 420;
 	}
 }

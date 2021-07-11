@@ -7,7 +7,7 @@ import net.minecraft.enchantment;
 @Mixin(LuckEnchantment.class)
 public class LuckEnchantmentMixin {
 	@Inject(method = "getMaxLevel", at = @At("RETURN"))
-	private void getMaxLevel(CallbackInfo ci) {
+	private int getMaxLevel(CallbackInfo ci) {
     return 420;
 	}
 }
