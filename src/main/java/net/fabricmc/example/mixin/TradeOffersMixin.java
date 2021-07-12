@@ -10,9 +10,9 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.util.math.MathHelper;
 
 @Mixin(TradeOffers$EnchantBookFactory.class)
-public class TradeOfferMixin {
+public class TradeOffersMixin {
 	@Inject(method = "create", at = @At(value = "FIELD", target = "net/minecraft/village/TradeOffer$EnchantBookFactory.i:I", ordinal = 1))
-	private void create(Entity entity, Random random, CallbackInfo ci) {
+	private void create(CallbackInfo ci) {
     i = MathHelper.nextInt(
 			random,
 			lv.getMinLevel(),

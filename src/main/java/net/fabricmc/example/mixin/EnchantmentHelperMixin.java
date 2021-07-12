@@ -8,7 +8,7 @@ import net.minecraft.item.*;
 @Mixin(EnchantmentHelper.class)
 public class EnchantmentHelperMixin {
 	@Inject(method = "calculateRequiredExperienceLevel", at = @At("HEAD"))
-	private int calculateRequiredExperienceLevel(Random random, int slotIndex, int bookshelfCount, ItemStack stack, CallbackInfo ci) {
+	private int calculateRequiredExperienceLevel(CallbackInfo ci) {
      if (stack.getItem().getEnchantability() <= 0){
        return 0;
      }

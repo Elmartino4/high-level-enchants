@@ -6,7 +6,7 @@ import net.minecraft.enchantment;
 
 @Mixin(ThornsEnchantment.class)
 public class ThornsEnchantmentMixin {
-	@Inject(method = "getMaxLevel", at = @At("RETURN"))
+	@Inject(method = "getMaxLevel()V", at = @At("RETURN"))
 	private int getMaxLevel(CallbackInfo ci) {
     return 420;
 	}

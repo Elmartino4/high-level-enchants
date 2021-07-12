@@ -8,7 +8,7 @@ import net.minecraft.item.*;
 @Mixin(EnchantmentScreenHandler.class)
 public class EnchantmentHelperMixin {
 	@Inject(method = "onContentChanged", at = @At("HEAD"))
-	private void onContentChanged(Inventory inventory, CallbackInfo ci) {
+	private void onContentChanged(CallbackInfo ci) {
 		if (inventory == this.inventory) {
 			ItemStack lv = inventory.getStack(0);
 

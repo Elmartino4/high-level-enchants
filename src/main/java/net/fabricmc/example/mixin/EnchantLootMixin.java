@@ -11,7 +11,7 @@ import net.minecraft.util.math.MathHelper;
 @Mixin(EnchantRandomlyLootFunction.class)
 public class EnchantLootMixin {
 	@Inject(method = "addEnchantmentToStack", at = @At(value = "FIELD", target = "net/minecraft/loot/function/EnchantRandomlyLootFunction.i:I", ordinal = 1))
-	private void addEnchantmentToStack(ItemStack stack, Enchantment enchantment, Random random, CallbackInfo ci) {
+	private void addEnchantmentToStack(CallbackInfo ci) {
     i = Math.min(
 			enchantment.getMaxLevel(),
 			Math.floor(
