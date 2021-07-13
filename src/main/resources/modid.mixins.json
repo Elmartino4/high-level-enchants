@@ -4,12 +4,14 @@
   "package": "net.fabricmc.example.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "DamageEnchantmentMixin",
-    "DepthStriderEnchantmentMixin",
-    "EfficiencyEnchantmentMixin",
-    "FireAspectEnchantmentMixin",
-    "FrostWalkerEnchantmentMixin",
-    "AnvilHandlerMixin"
+    "DamageEnchantmentMixin.java",
+    "DepthStriderEnchantmentMixin.java",
+    "EfficiencyEnchantmentMixin.java",
+    "FireAspectEnchantmentMixin.java",
+    "FrostWalkerEnchantmentMixin.java",
+    "ImpalingEnchantmentMixin.java",
+    "KnockbackEnchantmentMixin.java",
+    "ThornsEnchantmentMixin.java"
   ],
   "server": [
   ],

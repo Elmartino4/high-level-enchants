@@ -2,7 +2,7 @@ package net.fabricmc.example.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
-import net.minecraft.screen;
+import net.minecraft.screen.AnvilScreenHandler;
 
 
 @Mixin(AnvilScreenHandler.class)
