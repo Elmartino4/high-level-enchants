@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "id": "highLevelEnchants",
+  "id": "high-level-enchants",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "High Level Enchants",
+  "description": "Increases maximum enchant levels, fixes associated problems",
   "authors": [
     "Me!"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "--",
+    "sources": "https://github.com/Elmartino4/limitless2"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/highLevelEnchants/icon.png",
+  "icon": "assets/high-level-enchants/icon.png",
 
   "environment": "*",
   "entrypoints": {
@@ -23,18 +23,15 @@
     ]
   },
   "mixins": [
-    "highLevelEnchants.mixins.json"
+    "high-level-enchants.mixins.json"
   ],
 
-  "accessWidener" : "highLevelEnchants.accesswidener",
+  "accessWidener" : "high-level-enchants.accesswidener",
 
   "depends": {
     "fabricloader": ">=0.11.3",
     "fabric": "*",
     "minecraft": "1.17.x",
     "java": ">=16"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }

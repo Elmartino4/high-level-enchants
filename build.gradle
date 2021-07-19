@@ -15,7 +15,7 @@ repositories {
 }
 
 minecraft {
-	accessWidener "src/main/resources/highLevelEnchants.accesswidener"
+	accessWidener "src/main/resources/high-level-enchants.accesswidener"
 }
 
 dependencies {
