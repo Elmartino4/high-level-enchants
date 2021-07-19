@@ -1,14 +1,15 @@
-package net.fabricmc.example.mixin;
+package com.github.Elmartino4.limitless2.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.Overwrite;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.*;
+import java.util.Random;
 
 @Mixin(EnchantmentHelper.class)
 public class EnchantmentHelperMixin {
-	@Inject(method = "calculateRequiredExperienceLevel", at = @At("HEAD"))
-	private int calculateRequiredExperienceLevel(CallbackInfo ci) {
+	@Overwrite
+	public static int calculateRequiredExperienceLevel(Random random, int slotIndex, int bookshelfCount, ItemStack stack) {
      if (stack.getItem().getEnchantability() <= 0){
        return 0;
      }
