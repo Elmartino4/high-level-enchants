@@ -48,7 +48,6 @@ public class EnchantmentScreenMixin {
 				)
 				*(ModConfig.INSTANCE.bookshelfCounter.enchantMultiplier) + books/(double)(ModConfig.INSTANCE.bookshelfCounter.enchantDivConst)
 			);
-		System.out.println("books = " + books + ", lvl = " + level);
 		return level;
 	}
 }

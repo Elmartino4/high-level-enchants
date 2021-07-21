@@ -9,6 +9,8 @@ public class ConfigInstance {
   public int ToolOther;
   public int ArmourOther;
 
+  public BookshelfCounter bookshelfCounter;
+
   public ConfigInstance() {
     TravelSpeed = 20;
     MiningSpeed = 420;
@@ -17,9 +19,11 @@ public class ConfigInstance {
     Protection = 420;
     ToolOther = 420;
     ArmourOther = 420;
+
+    bookshelfCounter = new BookshelfCounter();
   }
 
-  public class bookshelfCounter {
+  public class BookshelfCounter {
     public static int enchantPower = 8;
     public static int enchantMultiplier = 35;
     public static int enchantDivConst = 40;

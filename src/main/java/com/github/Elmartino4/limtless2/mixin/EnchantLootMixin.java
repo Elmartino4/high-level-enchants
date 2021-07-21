@@ -30,8 +30,6 @@ public class EnchantLootMixin {
 			)
 		);
 
-		System.out.println("[fabric example mod] EnchantLootMixin");
-
 		return i;
   }
 }
