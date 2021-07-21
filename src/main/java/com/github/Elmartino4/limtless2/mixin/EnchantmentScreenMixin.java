@@ -1,5 +1,7 @@
 package com.github.Elmartino4.limitless2.mixin;
 
+import com.github.Elmartino4.limitless2.config.ModConfig;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,7 +40,20 @@ public class EnchantmentScreenMixin {
 				}
 			}
 		}
-
-		return (int)Math.floor(1 - Math.pow(3,books/100d)*160 + books/10d);
+		int enchantPower = ModConfig.INSTANCE.bookshelfCounter.enchantPower;
+		int level =
+			(int)Math.floor(
+				(1 -
+					Math.pow(enchantPower,-books/100d)
+				)
+				*(ModConfig.INSTANCE.bookshelfCounter.enchantMultiplier) + books/(double)(ModConfig.INSTANCE.bookshelfCounter.enchantDivConst)
+			);
+		System.out.println("books = " + books + ", lvl = " + level);
+		return level;
 	}
 }
+/*
+int enchantPower = 8;
+int enchantMultiplier = 35;
+int enchantDivConst = 40;
+*/

@@ -1,18 +1,18 @@
-bull = True
-lst = []
-while bull:
-    val = input("Enter enchant: ")
-    if val == "exit":
-        bull = False
-        print(*lst, sep = ", ")
+import csv
 
-    print(val)
-    if val != "exit":
+lst = []
+with open('Enchants.csv', newline='') as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+    for row in spamreader:
+        print(row)
+        val = row[0]
+
+        print(val)
         lst += val
-        lvl = input("Enter level: ")
+        lvl = row[1]
 
         input_file = open("ExampleMixin.java", "r")
-        output_file = open(val + "EnchantmentMixin.java", "w")
+        output_file = open(val + "Mixin.java", "w")
 
         for line in input_file:
             output_file.write((line.replace("___", val)).replace("...", lvl))

@@ -1,0 +1,33 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.Elmartino4.limitless2.mixin.enchantments",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "DamageMixin",
+    "DepthStriderMixin",
+    "EfficiencyMixin",
+    "FireAspectMixin",
+    "FrostWalkerMixin",
+    "ImpalingMixin",
+    "KnockbackMixin",
+    "LoyaltyMixin",
+    "LuckMixin",
+    "LureMixin",
+    "PiercingMixin",
+    "PowerMixin",
+    "ProtectionMixin",
+    "PunchMixin",
+    "QuickChargeMixin",
+    "RespirationMixin",
+    "SoulSpeedMixin",
+    "SweepingMixin",
+    "ThornsMixin",
+    "UnbreakingMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

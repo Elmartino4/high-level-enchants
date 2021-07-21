@@ -18,4 +18,10 @@ public class ConfigInstance {
     ToolOther = 420;
     ArmourOther = 420;
   }
+
+  public class bookshelfCounter {
+    public static int enchantPower = 8;
+    public static int enchantMultiplier = 35;
+    public static int enchantDivConst = 40;
+  }
 }
