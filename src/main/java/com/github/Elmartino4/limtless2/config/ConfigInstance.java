@@ -8,6 +8,7 @@ public class ConfigInstance {
   public int Protection;
   public int ToolOther;
   public int ArmourOther;
+  public int MaxAnvilLevel;
 
   public BookshelfCounter bookshelfCounter;
 
@@ -19,6 +20,7 @@ public class ConfigInstance {
     Protection = 420;
     ToolOther = 420;
     ArmourOther = 420;
+    MaxAnvilLevel = 80;
 
     bookshelfCounter = new BookshelfCounter();
   }
