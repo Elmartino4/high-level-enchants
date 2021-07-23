@@ -1,9 +1,14 @@
 package com.github.Elmartino4.limitless2.mixin;
 
+import net.minecraft.screen.AnvilScreenHandler;
+import com.github.Elmartino4.limitless2.config.ModConfig;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import net.minecraft.screen.AnvilScreenHandler;
-
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 @Mixin(AnvilScreenHandler.class)
 public class AnvilHandlerMixin {
