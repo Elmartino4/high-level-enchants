@@ -22,6 +22,7 @@ public class ConfigInstance {
     ArmourOther = 420;
     MaxAnvilLevel = 80;
 
+    enchantCategories = new CategoriseEnchants();
     bookshelfCounter = new BookshelfCounter();
   }
 
@@ -29,5 +30,16 @@ public class ConfigInstance {
     public static int enchantPower = 8;
     public static int enchantMultiplier = 35;
     public static int enchantDivConst = 40;
+  }
+
+  public class CategoriseEnchants {
+    public static String[] TravelSpeed = {};
+    public static String[] MiningSpeed = {};
+    public static String[] Luck = {};
+    public static String[] Attack = {};
+    public static String[] Protection = {};
+    public static String[] ToolOther = {};
+    public static String[] ArmourOther = {};
+    public static String[] MaxAnvilLevel = {};
   }
 }

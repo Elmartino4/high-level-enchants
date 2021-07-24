@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.Entity;
@@ -25,6 +26,8 @@ import net.minecraft.item.Items;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.registry.Registry;
+
+import net.minecraft.text.LiteralText;
 
 @Mixin(targets = "net/minecraft/village/TradeOffers$EnchantBookFactory")
 public class TradeOffersMixin {
@@ -74,6 +77,8 @@ public class TradeOffersMixin {
     if (this.ench.isTreasure()) {
       cost *= 2;
     }
+
+		System.out.println("Trade = " + this.ench.getTranslationKey());
 
 		if (cost > 36) {
       cost /= 9;
