@@ -1,10 +1,13 @@
 package com.github.Elmartino4.limitless2.mixin;
 
+import com.github.Elmartino4.limitless2.SetMaxLevel;
+
 import net.minecraft.loot.function.EnchantRandomlyLootFunction;
 import java.util.Random;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
@@ -32,4 +35,9 @@ public class EnchantLootMixin {
 
 		return i;
   }
+
+	@Redirect(method = "addEnchantmentToStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;getMaxLevel()I"))
+	private static int setMaxLevel(Enchantment ench){
+		return SetMaxLevel.getMaxLevel(ench);
+	}
 }

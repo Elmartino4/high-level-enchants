@@ -40,13 +40,13 @@ public class EnchantmentScreenMixin {
 				}
 			}
 		}
-		int enchantPower = ModConfig.INSTANCE.bookshelfCounter.enchantPower;
+		int enchantPower = ModConfig.INSTANCE.bookshelfPower;
 		int level =
 			(int)Math.floor(
 				(1 -
 					Math.pow(enchantPower,-books/100d)
 				)
-				*(ModConfig.INSTANCE.bookshelfCounter.enchantMultiplier) + books/(double)(ModConfig.INSTANCE.bookshelfCounter.enchantDivConst)
+				*(ModConfig.INSTANCE.bookshelfMultiplier) + books/(double)(ModConfig.INSTANCE.bookshelfDivConst)
 			);
 		return level;
 	}

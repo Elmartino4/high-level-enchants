@@ -1,11 +1,15 @@
 package com.github.Elmartino4.limitless2.mixin;
 
+import com.github.Elmartino4.limitless2.SetMaxLevel;
+import com.github.Elmartino4.limitless2.config.ModConfig;
+
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.TradeOffers.EnchantBookFactory;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.Shadow;
@@ -53,19 +57,18 @@ public class TradeOffersMixin {
 
 	@ModifyVariable(method = "create(Lnet/minecraft/entity/Entity;Ljava/util/Random;)Lnet/minecraft/village/TradeOffer;", ordinal = 0, at = @At("STORE"))
 	private int changeEnchantLvl(int previous, Entity entity, Random random){
-		int level = MathHelper.nextInt(
-			random,
-			this.ench.getMinLevel(),
-			Math.min(
-				this.ench.getMaxLevel(),
-				(int)Math.floor(
-					Math.log(
-						1d/(1-MathHelper.nextDouble(random, 0, 1))
-					) * Math.pow(this.experience + 20, 2)/140 + 1
-				)
-			)
+		int minLevel = ModConfig.INSTANCE.villagerMinMax.get(this.experience)[0];
+		int maxLevel = ModConfig.INSTANCE.villagerMinMax.get(this.experience)[1];
+
+		int level = MathHelper.clamp(
+			(int)Math.floor(
+				Math.log(
+					1d/(1-MathHelper.nextDouble(random, 0, 1))
+				) * Math.pow(this.experience + ModConfig.INSTANCE.tradePowerConst, 2)/ModConfig.INSTANCE.tradePowerDiv + 1
+			),
+			Math.max(this.ench.getMinLevel(), minLevel),
+			Math.min(SetMaxLevel.getMaxLevel(this.ench), maxLevel)
 		);
-		//System.out.println("villager mixin; experience = " + this.experience);
 		this.level = level;
 		return level;
 	}
@@ -80,7 +83,7 @@ public class TradeOffersMixin {
 
 		System.out.println("Trade = " + this.ench.getTranslationKey());
 
-		if (cost > 36) {
+		if (cost > 54) {
       cost /= 9;
 			this.useBlock = true;
     }else{
@@ -100,28 +103,4 @@ public class TradeOffersMixin {
 			cir.setReturnValue(new TradeOffer(new ItemStack((ItemConvertible)Blocks.EMERALD_BLOCK, this.Cost), new ItemStack((ItemConvertible)Items.BOOK), this.enchItem, 12, this.experience, 0.2F));
 		}
 	}
-	/*@Overwrite
-	public TradeOffer create(Entity entity, Random random) {
-    List<Enchantment> list = (List<Enchantment>)Registry.ENCHANTMENT.stream().filter(Enchantment::isAvailableForEnchantedBookOffer).collect(Collectors.toList());
-		Enchantment lv = list.get(random.nextInt(list.size()));
-		System.out.println("[fabric example mod] TradeOffersMixin");
-
-    ItemStack lv2 = EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(lv, level));
-
-
-
-    int cost = 2 + random.nextInt(5 + level * 10) + 3 * level;
-
-    if (lv.isTreasure()) {
-      cost *= 2;
-    }
-
-    if (cost > 64) {
-      cost = 64;
-    }
-
-
-
-    return new TradeOffer(new ItemStack((ItemConvertible)Items.EMERALD, cost), new ItemStack((ItemConvertible)Items.BOOK), lv2, 12, this.experience, 0.2F);
-  }*/
 }
