@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public class EnchantmentCommandMixin {
 	@Redirect(method = "execute(Lnet/minecraft/server/command/ServerCommandSource;Ljava/util/Collection;Lnet/minecraft/enchantment/Enchantment;I)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;getMaxLevel()I"))
 	private int setMaxLevel(Enchantment ench){
+		System.out.println("command");
 		return ModConfig.INSTANCE.commandEnchantMaxLevel;
 	}
 }

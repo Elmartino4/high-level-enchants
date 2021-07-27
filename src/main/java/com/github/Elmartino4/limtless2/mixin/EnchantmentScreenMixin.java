@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 public class EnchantmentScreenMixin {
 	@ModifyVariable(method = "method_17411", ordinal = 0, remap = false, at = @At(value = "INVOKE", target = "Ljava/util/Random;setSeed"))
 	private int countBookshelves(int previous, ItemStack stack, World world, BlockPos pos) {
+		System.out.println("Enchant scn start");
 		int books = 0;
 		//arg2.getBlockState(arg3.add(k * 2, 0, j * 2)).isOf(Blocks.BOOKSHELF)
 		for (int r = 2; r <= 8; r++) {
@@ -48,6 +49,7 @@ public class EnchantmentScreenMixin {
 				)
 				*(ModConfig.INSTANCE.bookshelfMultiplier) + books/(double)(ModConfig.INSTANCE.bookshelfDivConst)
 			);
+		System.out.println("Enchant scn finish");
 		return level;
 	}
 }

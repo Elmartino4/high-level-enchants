@@ -1,3 +1,4 @@
 accessWidener	v1	named
 
 extendable class net/minecraft/village/TradeOffers$EnchantBookFactory
+accessible method net/minecraft/item/Item appendStacks (Lnet/minecraft/item/ItemGroup;Lnet/minecraft/util/collection/DefaultedList;)V

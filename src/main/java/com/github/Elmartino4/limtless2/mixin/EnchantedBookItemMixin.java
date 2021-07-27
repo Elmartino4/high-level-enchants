@@ -13,8 +13,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(EnchantedBookItem.class)
 public class EnchantedBookItemMixin {
-	@Redirect(method = "appendStacks(Lnet/minecraft/item/ItemGroup;Lnet/minecraft/util/collection/DefaultedList;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;getMaxLevel()I"))
+	@Redirect(method = "appendStacks", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;getMaxLevel()I"))
 	private int setMaxLevel(Enchantment ench){
-		return SetMaxLevel.getMaxLevel(ench);
+		System.out.println("book");
+		int lvl = SetMaxLevel.getMaxLevel(ench);
+		System.out.println("book 2 ");
+		return lvl;
 	}
 }

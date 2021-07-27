@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class SetMaxLevel {
 	public static int getMaxLevel(Enchantment ench) {
-    System.out.println("Some indicator....." + ench.getTranslationKey());
+    System.out.println("SetMaxLevel");
 
     if(ModConfig.INSTANCE.enchantCategoryMap.containsKey(ench.getTranslationKey()))
       return ModConfig.INSTANCE.enchantCategoryMap.get(ench.getTranslationKey());

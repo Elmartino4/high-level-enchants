@@ -19,6 +19,8 @@ public class ConfigInstance {
   public int tradePowerConst;
   public int tradePowerDiv;
 
+  public boolean bypassLanguageFiles;
+
   public ConfigInstance() {
     enchantCategoryMap.put("enchantment.minecraft.aqua_affinity", 1);
     enchantCategoryMap.put("enchantment.minecraft.bane_of_arthropods", 420);
@@ -75,5 +77,7 @@ public class ConfigInstance {
 
     tradePowerConst = 20;
     tradePowerDiv = 240;
+
+    bypassLanguageFiles = false;
   }
 }

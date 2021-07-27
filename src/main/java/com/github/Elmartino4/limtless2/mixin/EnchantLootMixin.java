@@ -24,6 +24,7 @@ import net.minecraft.item.Items;
 public class EnchantLootMixin {
 	@ModifyVariable(method = "addEnchantmentToStack", ordinal = 0, at = @At("STORE"))
 	private static int changeEnchantLvl(int prev, ItemStack stack, Enchantment enchantment, Random random) {
+		System.out.println("loot");
     int i = Math.min(
 			enchantment.getMaxLevel(),
 			(int)Math.floor(
@@ -38,6 +39,7 @@ public class EnchantLootMixin {
 
 	@Redirect(method = "addEnchantmentToStack", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;getMaxLevel()I"))
 	private static int setMaxLevel(Enchantment ench){
+		System.out.println("loot");
 		return SetMaxLevel.getMaxLevel(ench);
 	}
 }
