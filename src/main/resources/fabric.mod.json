@@ -23,8 +23,7 @@
     ]
   },
   "mixins": [
-    "high-level-enchants.mixins.json",
-    "high-level-enchants.mixins-enchants.json"
+    "high-level-enchants.mixins.json"
   ],
 
   "accessWidener" : "high-level-enchants.accesswidener",
