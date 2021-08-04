@@ -3,13 +3,14 @@ package com.github.Elmartino4.limitless2.mixin;
 import com.github.Elmartino4.limitless2.SetMaxLevel;
 import com.github.Elmartino4.limitless2.config.ModConfig;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.*;
+
 import java.util.Random;
 
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;

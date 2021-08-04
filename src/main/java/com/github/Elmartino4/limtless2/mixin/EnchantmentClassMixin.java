@@ -3,9 +3,10 @@ package com.github.Elmartino4.limitless2.mixin;
 import com.github.Elmartino4.limitless2.SetMaxLevel;
 import com.github.Elmartino4.limitless2.config.ModConfig;
 
-import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.text.TranslatableText;
 
+import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -40,9 +41,9 @@ public class EnchantmentClassMixin {
 		return SetMaxLevel.getMaxLevel(ench);
 	}
 
-	//this doesnt work yet
-	/*@ModifyArg(method = "getName(I)Lnet/minecraft/text/Text;", at = @At(value = "INVOKE", target = "Lnet/minecraft/text/TranslatableText;append(Ljava/lang/String;)V"), index = 0)
-  private String tryBypassLanguageFiles(String prev) {
+	/*this doesnt work yet
+	@Redirect(method = "<clinit>", at = @At(value = "NEW", target = "net/minecraft/text/TranslatableText", ordinal = 1))
+  private TranslatableText tryBypassLanguageFiles(String prev) {
 		/*if (ModConfig.INSTANCE.bypassLanguageFiles){
 			try {
 				int lvl = Integer.parseInt(prev.split(".", -2)[2]);
@@ -52,9 +53,9 @@ public class EnchantmentClassMixin {
 				return prev;
 			}
 		}
-  	return prev;
-  }*/
-
+  	return new TranslatableText(prev);
+  }
+*/
 	private static String toRoman(int number) {
 		int l =  map.floorKey(number);
     if (number == l) {
