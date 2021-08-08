@@ -18,25 +18,25 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public class AnvilHandlerMixin {
 	@Overwrite
 	public static int getNextCost(int cost) {
-		System.out.println("anvil");
+		//System.out.println("anvil");
 		return (int)Math.ceil(ModConfig.INSTANCE.anvilMultiplier*cost+0.2);
 	}
 
 	@ModifyConstant(method = "updateResult()V", constant = @Constant(intValue = 40), expect = 3)
 	private int changeMaxLevel(int original) {
-		System.out.println("anvil");
+		//System.out.println("anvil");
 		return ModConfig.INSTANCE.maxAnvilLevel;
 	}
 
 	@ModifyConstant(method = "updateResult()V", constant = @Constant(intValue = 39), expect = 1)
 	private int changeMaxLevelAgain(int original) {
-		System.out.println("anvil");
+		//System.out.println("anvil");
 		return ModConfig.INSTANCE.maxAnvilLevel - 1;
 	}
 
 	@Redirect(method = "updateResult()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;getMaxLevel()I"))
 	private int setMaxLevel(Enchantment ench){
-		System.out.println("anvil");
+		//System.out.println("anvil");
 		return SetMaxLevel.getMaxLevel(ench);
 	}
 }

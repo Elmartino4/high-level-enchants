@@ -7,12 +7,16 @@ public class ConfigInstance {
   public double anvilMultiplier;
 
   public HashMap<String, Integer> enchantCategoryMap = new HashMap<>();
+  public HashMap<String, String> pathConverter = new HashMap<>();
 
   public HashMap<Integer, int[]> villagerMinMax = new HashMap<>();
 
   public int bookshelfPower;
   public int bookshelfMultiplier;
   public int bookshelfDivConst;
+
+  public double ingotMultiplier;
+  public double blockMultiplier;
 
   public int commandEnchantMaxLevel;
 
@@ -22,6 +26,11 @@ public class ConfigInstance {
   public boolean bypassLanguageFiles;
 
   public ConfigInstance() {
+    ingotMultiplier = 1;
+    blockMultiplier = 14;
+
+    pathConverter.put("minecraft", "enchantment.minecraft.");
+
     enchantCategoryMap.put("enchantment.minecraft.aqua_affinity", 1);
     enchantCategoryMap.put("enchantment.minecraft.bane_of_arthropods", 420);
     enchantCategoryMap.put("enchantment.minecraft.blast_protection", 420);
@@ -64,7 +73,7 @@ public class ConfigInstance {
     villagerMinMax.put(1, new int[]{1, 6});
     villagerMinMax.put(5, new int[]{3, 10});
     villagerMinMax.put(10, new int[]{5, 30});
-    villagerMinMax.put(15, new int[]{8, 400});
+    villagerMinMax.put(15, new int[]{8, 410});
 
     maxAnvilLevel = 60;
     anvilMultiplier = 1.3d;

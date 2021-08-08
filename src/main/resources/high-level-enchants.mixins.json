@@ -10,7 +10,8 @@
     "EnchantmentHelperMixin",
     "TradeOffersMixin",
     "EnchantLootMixin",
-    "EnchantmentScreenMixin"
+    "EnchantmentScreenMixin",
+    "VillagerEntityMixin"
   ],
   "client": [
   ],

@@ -37,7 +37,7 @@ public class EnchantmentClassMixin {
 
 	@Redirect(method = "getName(I)Lnet/minecraft/text/Text;", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/Enchantment;getMaxLevel()I"))
 	private int setMaxLevel(Enchantment ench){
-		System.out.println("class");
+		//System.out.println("class");
 		return SetMaxLevel.getMaxLevel(ench);
 	}
 
