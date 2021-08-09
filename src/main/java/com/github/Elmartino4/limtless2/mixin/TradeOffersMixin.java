@@ -6,6 +6,17 @@ import com.github.Elmartino4.limitless2.config.ModConfig;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.TradeOffers.EnchantBookFactory;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentLevelEntry;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.EnchantedBookItem;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.text.LiteralText;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,19 +30,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.EnchantedBookItem;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
-
-import net.minecraft.text.LiteralText;
 
 @Mixin(targets = "net/minecraft/village/TradeOffers$EnchantBookFactory")
 public class TradeOffersMixin {
@@ -63,18 +61,22 @@ public class TradeOffersMixin {
 		int minLevel = ModConfig.INSTANCE.villagerMinMax.get(this.experience)[0];
 		int maxLevel = ModConfig.INSTANCE.villagerMinMax.get(this.experience)[1];
 
-		int level = MathHelper.clamp(
+		int level = clamp(
 			(int)Math.floor(
 				Math.log(
 					1d/(1-MathHelper.nextDouble(random, 0, 1))
-				) * Math.pow(this.experience + ModConfig.INSTANCE.tradePowerConst, 2)/ModConfig.INSTANCE.tradePowerDiv + 1
+				) * Math.pow(this.experience + ModConfig.INSTANCE.tradePowerConst, 2)/ModConfig.INSTANCE.tradePowerDiv + minLevel
 			),
-			Math.max(this.ench.getMinLevel(), minLevel),
+			this.ench.getMinLevel(),
 			Math.min(SetMaxLevel.getMaxLevel(this.ench), maxLevel)
 		);
 		this.level = level;
 		//System.out.println("Villager finish");
 		return level;
+	}
+
+	private static int clamp(int val, int min, int max){
+		return Math.min(Math.max(val, min), max);
 	}
 
 	@ModifyVariable(method = "create(Lnet/minecraft/entity/Entity;Ljava/util/Random;)Lnet/minecraft/village/TradeOffer;", ordinal = 1, at = @At("RETURN"))

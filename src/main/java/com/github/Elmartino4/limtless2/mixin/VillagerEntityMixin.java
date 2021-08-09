@@ -22,6 +22,8 @@ import net.minecraft.world.World;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.ParticleEffect;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -49,44 +51,30 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
 		if (mainHandItem.isOf(Items.GOLD_BLOCK) || mainHandItem.isOf(Items.GOLD_INGOT)) {
 			this.hasSpecialItem = true;
 			TradeOfferList newList;
-			if (isLibrarian())
-				if((newList = BribeVillager.doBribe(this.offers, mainHandItem.isOf(Items.GOLD_BLOCK))) != this.offers){
-					System.out.println("found new offers");
-					this.offers = newList;
-					if (!(player.getAbilities()).creativeMode) {
-						mainHandItem.decrement(1);
-					}
+			if (isLibrarian()){
+				BribeVillager bribe = new BribeVillager(this.offers, mainHandItem.isOf(Items.GOLD_BLOCK));
+
+				if(bribe.getDecrementItem() && !(player.getAbilities()).creativeMode){
+					mainHandItem.decrement(1);
+				}
+
+				if(bribe.isSuccessful()){
+					this.offers = bribe.getNewList();
+					produceParticles((ParticleEffect)ParticleTypes.HAPPY_VILLAGER);
 					playSound(SoundEvents.ENTITY_VILLAGER_YES, getSoundVolume(), getSoundPitch());
+					//System.out.println("did return");
 					cir.setReturnValue(ActionResult.SUCCESS);
 				}else{
-					System.out.println("offers didnt change");
 					playSound(SoundEvents.ENTITY_VILLAGER_NO, getSoundVolume(), getSoundPitch());
-					cir.setReturnValue(ActionResult.FAIL);
-					if (!(player.getAbilities()).creativeMode) {
-						mainHandItem.decrement(1);
-					}
+					//System.out.println("did return");
+					cir.setReturnValue(ActionResult.CONSUME);
 				}
+			}
 		}else{
 			this.hasSpecialItem = false;
 		}
 	}
-
-	@Redirect(method = "interactMob(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResult;", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"))
-	private boolean stopInteract(ItemStack itmStk, Item itm){
-		if(this.hasSpecialItem && isLibrarian() && itm == Items.VILLAGER_SPAWN_EGG){
-			System.out.println("stopd interact");
-			return true;
-		}
-
-		return itmStk.isOf(itm);
-	}
-
-	@Redirect(method = "interactMob(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResult;", at = @At(value = "INVOKE", target = "Lnet/minecraft/village/TradeOfferList;isEmpty()Z"))
-	private boolean stopInteract(TradeOfferList list){
-		System.out.println("called isBaby");
-		return list.isEmpty();
-	}
-
+	
 	private boolean isLibrarian(){
 		String id = this.getVillagerData().getProfession().getId();
 		//System.out.println("id = " + id);

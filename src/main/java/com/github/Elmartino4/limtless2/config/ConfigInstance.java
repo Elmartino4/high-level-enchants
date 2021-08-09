@@ -7,7 +7,6 @@ public class ConfigInstance {
   public double anvilMultiplier;
 
   public HashMap<String, Integer> enchantCategoryMap = new HashMap<>();
-  public HashMap<String, String> pathConverter = new HashMap<>();
 
   public HashMap<Integer, int[]> villagerMinMax = new HashMap<>();
 
@@ -28,8 +27,6 @@ public class ConfigInstance {
   public ConfigInstance() {
     ingotMultiplier = 1;
     blockMultiplier = 14;
-
-    pathConverter.put("minecraft", "enchantment.minecraft.");
 
     enchantCategoryMap.put("enchantment.minecraft.aqua_affinity", 1);
     enchantCategoryMap.put("enchantment.minecraft.bane_of_arthropods", 420);
@@ -84,8 +81,8 @@ public class ConfigInstance {
 
     commandEnchantMaxLevel = 10000;
 
-    tradePowerConst = 20;
-    tradePowerDiv = 240;
+    tradePowerConst = 12;
+    tradePowerDiv = 50;
 
     bypassLanguageFiles = false;
   }

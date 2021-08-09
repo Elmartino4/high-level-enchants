@@ -24,68 +24,102 @@ import java.util.Iterator;
 //IM SO STOOPID FOR MAKING THIS STATIC
 
 public class BribeVillager {
-	public static TradeOfferList doBribe(TradeOfferList originalList, boolean goldBlock) {
-		TradeOfferList offerList = new TradeOfferList();
+
+	private TradeOfferList offerList;
+	private boolean usedgoldBlock;
+	private boolean success;
+	private int tradeIndex;
+	private Random random;
+	private boolean decrementItem;
+
+	public BribeVillager(TradeOfferList originalList, boolean goldBlock) {
+		this.offerList = new TradeOfferList();
+		this.usedgoldBlock = goldBlock;
+		this.random = new Random();
+		this.success = false;
+
 		try{
-			offerList = (TradeOfferList)originalList.clone();
+			this.offerList = (TradeOfferList)originalList.clone();
 		}catch(Exception e){
 
 		}
 
-		Random random = new Random();
-		int selectedTrade = selectBookTrade(offerList, random);
-		if(selectedTrade != -1){
-			int level = getLevel(offerList.get(selectedTrade));
-			double probability = (goldBlock) ? ModConfig.INSTANCE.blockMultiplier/(level+ModConfig.INSTANCE.blockMultiplier) : ModConfig.INSTANCE.ingotMultiplier/(level+ModConfig.INSTANCE.ingotMultiplier);
+		this.decrementItem = false;
+		this.tradeIndex = selectBookTrade();
+		doBribe();
+	}
 
-			TradeOffer oldOffer = offerList.get(selectedTrade);
-			if(random.nextDouble() < probability)
-				offerList.set(selectedTrade, getNewOffer(oldOffer));
+	public boolean getDecrementItem(){
+		return this.decrementItem;
+	}
+
+	public boolean isSuccessful(){
+		return this.success;
+	}
+
+	public TradeOfferList getNewList(){
+		return this.offerList;
+	}
+
+	private void doBribe(){
+		this.success = false;
+		if(this.tradeIndex != -1){
+			this.decrementItem = true;
+
+			int level = getMaxLevel(this.offerList.get(this.tradeIndex));
+			double probability = (this.usedgoldBlock) ? ModConfig.INSTANCE.blockMultiplier/(level+ModConfig.INSTANCE.blockMultiplier) : ModConfig.INSTANCE.ingotMultiplier/(level+ModConfig.INSTANCE.ingotMultiplier);
+
+			TradeOffer oldOffer = this.offerList.get(this.tradeIndex);
+			if(random.nextDouble() < probability){
+				setNewOffer();
+				this.success = true;
+			}
 		}else{
 			System.out.println("no Trades Found");
 		}
-		return offerList;
-  }
+	}
 
-	private static int selectBookTrade(TradeOfferList offerList, Random random){
+	private int selectBookTrade(){
 		ArrayList<Integer> offerIds = new ArrayList<Integer>();
-
-		for (int i = 0; i < offerList.size(); i++) {
-			NbtCompound enchNBT = getEnchantmentNbt(offerList.get(i).getSellItem()).getCompound(0);
-
-			if(offerList.get(i).getSellItem().getItem() == Items.ENCHANTED_BOOK){
-				String path = EnchantmentHelper.getIdFromNbt(enchNBT).getPath();
-				String namespace = EnchantmentHelper.getIdFromNbt(enchNBT).getNamespace();
-
-				if(ModConfig.INSTANCE.pathConverter.containsKey(namespace)){
-					String key = ModConfig.INSTANCE.pathConverter.get(namespace) + path;
-
-					if(ModConfig.INSTANCE.enchantCategoryMap.containsKey(key))
-						if(ModConfig.INSTANCE.enchantCategoryMap.get(key) > EnchantmentHelper.getLevelFromNbt(enchNBT) && ModConfig.INSTANCE.villagerMinMax.get(getExpFromIndex(i))[1] > EnchantmentHelper.getLevelFromNbt(enchNBT))
-							offerIds.add(i);
+		for (int i = 0; i < this.offerList.size(); i++) {
+			boolean isValid = true;
+			if(this.offerList.get(i).getSellItem().getItem() == Items.ENCHANTED_BOOK){
+				Map<Enchantment, Integer> enchants = EnchantmentHelper.get(this.offerList.get(i).getSellItem());
+				Set<Enchantment> keys = enchants.keySet();
+				Iterator<Enchantment> iterator = keys.iterator();
+				while (iterator.hasNext()) {
+					Enchantment next = iterator.next();
+					//System.out.println(next.getTranslationKey());
+					//System.out.println(getExpFromIndex(i));
+					int level = enchants.get(next);
+					if(level >= ModConfig.INSTANCE.enchantCategoryMap.get(next.getTranslationKey()) || level >= ModConfig.INSTANCE.villagerMinMax.get(getExpFromIndex(i))[1])
+						isValid = false;
 				}
-			}else{
-				System.out.println("not a book");
-			}
+			}else{ isValid = false; }
+			if(isValid)
+				offerIds.add(i);
 		}
 
 		if(offerIds.size() != 0)
-			return offerIds.get(random.nextInt(offerIds.size()));
+			return offerIds.get(this.random.nextInt(offerIds.size()));
 		return -1;
 	}
 
-	private static int getLevel(TradeOffer offer){
-		NbtCompound enchNBT = getEnchantmentNbt(offer.getSellItem()).getCompound(0);
-		return EnchantmentHelper.getLevelFromNbt(enchNBT);
+	private static int getMaxLevel(TradeOffer offer){
+		int out = 0;
+		Map<Enchantment, Integer> enchants = EnchantmentHelper.get(offer.getSellItem());
+		Set<Enchantment> keys = enchants.keySet();
+		Iterator<Enchantment> i = keys.iterator();
+		while (i.hasNext()) {
+			int level = enchants.get(i.next());
+			if(level > out)
+				out = level;
+		}
+		return out;
 	}
 
-	private static TradeOffer getNewOffer(TradeOffer oldOffer){
-		/*NbtCompound enchNBT = oldOffer.getSellItem().getNbt();
-		NbtCompound asItemStack = getEnchantmentNbt(oldOffer.getSellItem()).getCompound(0);
-
-		EnchantmentHelper.writeLevelToNbt(asItemStack, getLevel(oldOffer) + 1);
-		NbtElement storedEnchantments = asItemStack.get("StoredEnchantments");
-		enchNBT.put("StoredEnchantments", storedEnchantments);*/
+	private void setNewOffer(){
+		TradeOffer oldOffer = this.offerList.get(this.tradeIndex);
 
 		Map<Enchantment, Integer> enchants = EnchantmentHelper.get(oldOffer.getSellItem());
 		Set<Enchantment> keys = enchants.keySet();
@@ -99,15 +133,14 @@ public class BribeVillager {
 
 		EnchantmentHelper.set(enchants, sellItem);
 
-		return new TradeOffer(oldOffer.getOriginalFirstBuyItem(), oldOffer.getSecondBuyItem(), sellItem, oldOffer.getMaxUses(), oldOffer.getMerchantExperience(), oldOffer.getPriceMultiplier());
-	}
-
-	private static NbtList getEnchantmentNbt(ItemStack stack) {
-		NbtCompound lv = stack.getNbt();
-		if (lv != null) {
-			return lv.getList("StoredEnchantments", 10);
-		}
-		return new NbtList();
+		this.offerList.set(this.tradeIndex, new TradeOffer(
+			oldOffer.getOriginalFirstBuyItem(),
+			oldOffer.getSecondBuyItem(),
+			sellItem,
+			oldOffer.getMaxUses(),
+			oldOffer.getMerchantExperience(),
+			oldOffer.getPriceMultiplier()
+		));
 	}
 
 	private static int getExpFromIndex(int index){
