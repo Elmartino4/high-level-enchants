@@ -1,16 +1,9 @@
-# Essentially a ripoff of [limitless](https://github.com/user11681/limitless)
+# This page is no longer being used to detail this mods features;
+Refer to https://modrinth.com/mod/highlevelenchants for latest releases, features, and other details on the mod.
 
-## Current features;
- - removes anvil limit
- - enchants loot
- - makes higher level librarians better at enchanting
- - increases bookshelf detection area and changes pattern
- - config allows change of max level of all enchants
- - limit for command enchant is increased further
- - limit to level 255 removed completely
- - support for server side only
- - max level of command enchants increased
- - **Librarian villagers can now be given gold or gold blocks to increase enchanted book level**
-
-## Upcoming features;
- - Optional overwriting language files the roman numerals of enchants over level X (Disabled by default)
+## Licencing;
+ - You may modify the source at your will; Copies with many modifications may be redistributed (Please give credit)
+ - **DO NOT REDISTRIBUTE** an unmodified copy of this mod
+ - I will attempt to support anyone interested in configuring the mod (in my own time)
+ - I will never port the mod to forge, but feel free to do so yourself
+ - If you modify or recreate this mod please give credit, or mention me, and maybe provide a link to the [modrinth](https://modrinth.com/mod/highlevelenchants), or [github](https://github.com/Elmartino4/high-level-enchants)
