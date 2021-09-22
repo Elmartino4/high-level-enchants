@@ -15,8 +15,7 @@
     "RecipesProviderMixin",
     "DamageUtilMixin",
     "EnchantmentCommandMixin",
-    "ItemStackMixin",
-    "CrossBowItemMixin"
+    "ItemStackMixin"
   ],
   "client": [
   ],
