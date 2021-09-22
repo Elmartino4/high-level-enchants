@@ -1,4 +1,4 @@
-package com.github.Elmartino4.limitless2.config;
+package com.github.Elmartino4.highLevelEnchants.config;
 
 import java.util.HashMap;
 
@@ -22,7 +22,10 @@ public class ConfigInstance {
   public int tradePowerConst;
   public int tradePowerDiv;
 
+  public double costDivider;
+
   public boolean bypassLanguageFiles;
+  public boolean allowMixedProt;
 
   public ConfigInstance() {
     ingotMultiplier = 1;
@@ -85,5 +88,8 @@ public class ConfigInstance {
     tradePowerDiv = 50;
 
     bypassLanguageFiles = false;
+    allowMixedProt = true;
+
+    costDivider = 7.0;
   }
 }

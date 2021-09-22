@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.github.Elmartino4.limitless2.mixin",
+  "package": "com.github.Elmartino4.highLevelEnchants.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "AnvilHandlerMixin",
@@ -11,7 +11,8 @@
     "TradeOffersMixin",
     "EnchantLootMixin",
     "EnchantmentScreenMixin",
-    "VillagerEntityMixin"
+    "VillagerEntityMixin",
+    "RecipesProviderMixin"
   ],
   "client": [
   ],

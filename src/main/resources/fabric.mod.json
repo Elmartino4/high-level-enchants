@@ -19,11 +19,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.github.Elmartino4.limitless2.HighLevelEnchants"
+      "com.github.Elmartino4.highLevelEnchants.HighLevelEnchants"
     ]
   },
   "mixins": [
-    "high-level-enchants.mixins.json"
+    "high-level-enchants.mixins.json",
+    "high-level-enchants.enchantment.mixins.json"
   ],
 
   "accessWidener" : "high-level-enchants.accesswidener",

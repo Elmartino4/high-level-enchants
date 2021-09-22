@@ -1,6 +1,6 @@
-package com.github.Elmartino4.limitless2.mixin;
+package com.github.Elmartino4.highLevelEnchants.mixin;
 
-import com.github.Elmartino4.limitless2.SetMaxLevel;
+import com.github.Elmartino4.highLevelEnchants.SetMaxLevel;
 
 import net.minecraft.loot.function.EnchantRandomlyLootFunction;
 import java.util.Random;
@@ -8,17 +8,12 @@ import java.util.Random;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.util.math.MathHelper;
 
-import net.minecraft.item.EnchantedBookItem;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 
 @Mixin(EnchantRandomlyLootFunction.class)
 public class EnchantLootMixin {

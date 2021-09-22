@@ -1,35 +1,26 @@
-package com.github.Elmartino4.limitless2.mixin;
+package com.github.Elmartino4.highLevelEnchants.mixin;
 
-import com.github.Elmartino4.limitless2.SetMaxLevel;
-import com.github.Elmartino4.limitless2.config.ModConfig;
+import com.github.Elmartino4.highLevelEnchants.SetMaxLevel;
+import com.github.Elmartino4.highLevelEnchants.config.ModConfig;
 
 import net.minecraft.village.TradeOffer;
-import net.minecraft.village.TradeOffers;
-import net.minecraft.village.TradeOffers.EnchantBookFactory;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.text.LiteralText;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 @Mixin(targets = "net/minecraft/village/TradeOffers$EnchantBookFactory")
 public class TradeOffersMixin {

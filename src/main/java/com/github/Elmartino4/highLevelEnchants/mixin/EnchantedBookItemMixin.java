@@ -1,6 +1,6 @@
-package com.github.Elmartino4.limitless2.mixin;
+package com.github.Elmartino4.highLevelEnchants.mixin;
 
-import com.github.Elmartino4.limitless2.SetMaxLevel;
+import com.github.Elmartino4.highLevelEnchants.SetMaxLevel;
 
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -8,7 +8,6 @@ import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.enchantment.Enchantment;
 
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(EnchantedBookItem.class)

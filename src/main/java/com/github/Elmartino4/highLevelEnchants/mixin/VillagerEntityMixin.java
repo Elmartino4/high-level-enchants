@@ -1,26 +1,18 @@
-package com.github.Elmartino4.limitless2.mixin;
+package com.github.Elmartino4.highLevelEnchants.mixin;
 
-import com.github.Elmartino4.limitless2.BribeVillager;
-import com.github.Elmartino4.limitless2.config.ModConfig;
-
-import java.util.ArrayList;
-import java.util.Random;
+import com.github.Elmartino4.highLevelEnchants.BribeVillager;
 
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.Item;
 import net.minecraft.village.VillagerData;
 import net.minecraft.util.ActionResult;
 import net.minecraft.village.TradeOfferList;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.World;
-import net.minecraft.village.TradeOffer;
-import net.minecraft.village.TradeOfferList;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.ParticleEffect;
@@ -28,9 +20,7 @@ import net.minecraft.particle.ParticleEffect;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(VillagerEntity.class)

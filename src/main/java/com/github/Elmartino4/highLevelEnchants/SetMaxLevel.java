@@ -1,9 +1,7 @@
-package com.github.Elmartino4.limitless2;
+package com.github.Elmartino4.highLevelEnchants;
 
-import com.github.Elmartino4.limitless2.config.ModConfig;
+import com.github.Elmartino4.highLevelEnchants.config.ModConfig;
 import net.minecraft.enchantment.Enchantment;
-
-import java.util.HashMap;
 
 public class SetMaxLevel {
 	public static int getMaxLevel(Enchantment ench) {

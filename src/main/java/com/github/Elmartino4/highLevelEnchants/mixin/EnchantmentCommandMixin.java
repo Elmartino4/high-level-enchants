@@ -1,13 +1,12 @@
-package com.github.Elmartino4.limitless2.mixin;
+package com.github.Elmartino4.highLevelEnchants.mixin;
 
-import com.github.Elmartino4.limitless2.config.ModConfig;
+import com.github.Elmartino4.highLevelEnchants.config.ModConfig;
 
 import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.server.command.EnchantCommand;
 import net.minecraft.enchantment.Enchantment;
 
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(EnchantCommand.class)

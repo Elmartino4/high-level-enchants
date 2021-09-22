@@ -1,12 +1,10 @@
-package com.github.Elmartino4.limitless2.config;
+package com.github.Elmartino4.highLevelEnchants.config;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,10 +1,7 @@
-package com.github.Elmartino4.limitless2;
+package com.github.Elmartino4.highLevelEnchants;
 
-import com.github.Elmartino4.limitless2.config.ModConfig;
+import com.github.Elmartino4.highLevelEnchants.config.ModConfig;
 
-import net.minecraft.nbt.NbtList;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.village.TradeOffer;

@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.Elmartino4.highLevelEnchants.mixin.enchants",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "ProtectionEnchantmentMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
