@@ -84,8 +84,8 @@ public class ConfigInstance {
 
     commandEnchantMaxLevel = 32767;
 
-    tradePowerConst = 12;
-    tradePowerDiv = 50;
+    tradePowerConst = 20;
+    tradePowerDiv = 270;
 
     bypassLanguageFiles = false;
     allowMixedProt = true;
