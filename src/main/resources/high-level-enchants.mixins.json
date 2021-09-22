@@ -12,7 +12,11 @@
     "EnchantLootMixin",
     "EnchantmentScreenMixin",
     "VillagerEntityMixin",
-    "RecipesProviderMixin"
+    "RecipesProviderMixin",
+    "DamageUtilMixin",
+    "EnchantmentCommandMixin",
+    "ItemStackMixin",
+    "CrossBowItemMixin"
   ],
   "client": [
   ],

@@ -29,7 +29,7 @@ public class CheapBookRecipe extends SpecialCraftingRecipe{
                 hasDiamond = true;
             }else if(itmStack.getItem() == Items.ENCHANTED_BOOK){
                 enchantedBook++;
-            }else if(itmStack.getItem() != Items.AIR){
+            }else if(itmStack.getItem() == Items.EXPERIENCE_BOTTLE){ }else if(itmStack.getItem() != Items.AIR){
                 return false;
             }
         }
@@ -39,7 +39,7 @@ public class CheapBookRecipe extends SpecialCraftingRecipe{
 
     public ItemStack craft(CraftingInventory inv){
         ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
-        int diamonds = 0;
+        double diamonds = 0;
 
         for (int i = 0; i < inv.size(); i++) {
             ItemStack itmStack = inv.getStack(i);
@@ -47,18 +47,20 @@ public class CheapBookRecipe extends SpecialCraftingRecipe{
                 diamonds++;
             }else if(itmStack.getItem() == Items.DIAMOND_BLOCK){
                 diamonds += 11;
+            }else if(itmStack.getItem() == Items.EXPERIENCE_BOTTLE){
+                diamonds += 0.4D;
             }else if(itmStack.getItem() == Items.ENCHANTED_BOOK){
                 book = itmStack.copy();
             }
         }
 
         if(book.getNbt().contains("high-level-enchants-cost")){
-            diamonds += book.getOrCreateNbt().getInt("high-level-enchants-cost");
+            diamonds += book.getOrCreateNbt().getDouble("high-level-enchants-cost");
         }else{
             diamonds++;
         }
 
-        book.setSubNbt("high-level-enchants-cost", NbtInt.of(diamonds));
+        book.setSubNbt("high-level-enchants-cost", NbtDouble.of(diamonds));
 
         System.out.println("diamonds = " + diamonds);
 

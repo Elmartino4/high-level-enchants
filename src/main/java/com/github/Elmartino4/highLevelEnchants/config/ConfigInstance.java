@@ -70,10 +70,10 @@ public class ConfigInstance {
     enchantCategoryMap.put("enchantment.minecraft.thorns", 420);
     enchantCategoryMap.put("enchantment.minecraft.unbreaking", 420);
 
-    villagerMinMax.put(1, new int[]{1, 6});
-    villagerMinMax.put(5, new int[]{3, 10});
-    villagerMinMax.put(10, new int[]{5, 30});
-    villagerMinMax.put(15, new int[]{8, 410});
+    villagerMinMax.put(1, new int[]{1, 5});
+    villagerMinMax.put(5, new int[]{3, 8});
+    villagerMinMax.put(10, new int[]{6, 20});
+    villagerMinMax.put(15, new int[]{10, 410});
 
     maxAnvilLevel = 60;
     anvilMultiplier = 1.3d;
@@ -82,7 +82,7 @@ public class ConfigInstance {
     bookshelfMultiplier = 35;
     bookshelfDivConst = 40;
 
-    commandEnchantMaxLevel = 10000;
+    commandEnchantMaxLevel = 32767;
 
     tradePowerConst = 12;
     tradePowerDiv = 50;
