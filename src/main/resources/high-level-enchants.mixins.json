@@ -12,7 +12,6 @@
     "EnchantLootMixin",
     "EnchantmentScreenMixin",
     "VillagerEntityMixin",
-    "RecipesProviderMixin",
     "DamageUtilMixin",
     "EnchantmentCommandMixin",
     "ItemStackMixin"
