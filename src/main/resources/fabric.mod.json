@@ -6,14 +6,14 @@
   "name": "High Level Enchants",
   "description": "Increases maximum enchant levels, fixes associated problems",
   "authors": [
-    "Me!"
+    "Elmartino4"
   ],
   "contact": {
-    "homepage": "--",
-    "sources": "https://github.com/Elmartino4/limitless2"
+    "homepage": "https://modrinth.com/mod/highlevelenchants",
+    "sources": "https://github.com/Elmartino4/high-level-enchants"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/high-level-enchants/icon.png",
 
   "environment": "*",

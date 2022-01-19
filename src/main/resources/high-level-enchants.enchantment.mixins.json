@@ -4,6 +4,7 @@
   "package": "com.github.Elmartino4.highLevelEnchants.mixin.enchants",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "DamageEnchantmentMixin",
     "ProtectionEnchantmentMixin"
   ],
   "client": [

@@ -26,54 +26,55 @@ public class ConfigInstance {
 
   public boolean bypassLanguageFiles;
   public boolean allowMixedProt;
+  public boolean allowMixedDamage;
 
   public ConfigInstance() {
     ingotMultiplier = 1;
     blockMultiplier = 14;
 
-    enchantCategoryMap.put("enchantment.minecraft.aqua_affinity", 1);
-    enchantCategoryMap.put("enchantment.minecraft.bane_of_arthropods", 420);
-    enchantCategoryMap.put("enchantment.minecraft.blast_protection", 420);
-    enchantCategoryMap.put("enchantment.minecraft.channeling", 1);
-    enchantCategoryMap.put("enchantment.minecraft.binding_curse", 1);
-    enchantCategoryMap.put("enchantment.minecraft.vanishing_curse", 1);
-    enchantCategoryMap.put("enchantment.minecraft.depth_strider", 20);
-    enchantCategoryMap.put("enchantment.minecraft.efficiency", 420);
-    enchantCategoryMap.put("enchantment.minecraft.feather_falling", 420);
-    enchantCategoryMap.put("enchantment.minecraft.fire_aspect", 420);
-    enchantCategoryMap.put("enchantment.minecraft.fire_protection", 420);
-    enchantCategoryMap.put("enchantment.minecraft.flame", 420);
-    enchantCategoryMap.put("enchantment.minecraft.fortune", 420);
-    enchantCategoryMap.put("enchantment.minecraft.frost_walker", 420);
-    enchantCategoryMap.put("enchantment.minecraft.impaling", 420);
-    enchantCategoryMap.put("enchantment.minecraft.infinity", 1);
-    enchantCategoryMap.put("enchantment.minecraft.knockback", 420);
-    enchantCategoryMap.put("enchantment.minecraft.looting", 420);
-    enchantCategoryMap.put("enchantment.minecraft.loyalty", 420);
-    enchantCategoryMap.put("enchantment.minecraft.luck_of_the_sea", 420);
-    enchantCategoryMap.put("enchantment.minecraft.lure", 5);
-    enchantCategoryMap.put("enchantment.minecraft.mending", 1);
-    enchantCategoryMap.put("enchantment.minecraft.multishot", 20);
-    enchantCategoryMap.put("enchantment.minecraft.piercing", 420);
-    enchantCategoryMap.put("enchantment.minecraft.power", 420);
-    enchantCategoryMap.put("enchantment.minecraft.projectile_protection", 420);
-    enchantCategoryMap.put("enchantment.minecraft.protection", 420);
-    enchantCategoryMap.put("enchantment.minecraft.punch", 420);
-    enchantCategoryMap.put("enchantment.minecraft.respiration", 420);
-    enchantCategoryMap.put("enchantment.minecraft.quick_charge", 420);
-    enchantCategoryMap.put("enchantment.minecraft.riptide", 420);
-    enchantCategoryMap.put("enchantment.minecraft.sharpness", 420);
-    enchantCategoryMap.put("enchantment.minecraft.silk_touch", 1);
-    enchantCategoryMap.put("enchantment.minecraft.smite", 420);
-    enchantCategoryMap.put("enchantment.minecraft.soul_speed", 20);
-    enchantCategoryMap.put("enchantment.minecraft.sweeping", 420);
-    enchantCategoryMap.put("enchantment.minecraft.thorns", 420);
-    enchantCategoryMap.put("enchantment.minecraft.unbreaking", 420);
+    enchantCategoryMap.put("minecraft:aqua_affinity", 1);
+    enchantCategoryMap.put("minecraft:bane_of_arthropods", 50);
+    enchantCategoryMap.put("minecraft:blast_protection", 50);
+    enchantCategoryMap.put("minecraft:channeling", 1);
+    enchantCategoryMap.put("minecraft:binding_curse", 1);
+    enchantCategoryMap.put("minecraft:vanishing_curse", 1);
+    enchantCategoryMap.put("minecraft:depth_strider", 10);
+    enchantCategoryMap.put("minecraft:efficiency", 50);
+    enchantCategoryMap.put("minecraft:feather_falling", 50);
+    enchantCategoryMap.put("minecraft:fire_aspect", 50);
+    enchantCategoryMap.put("minecraft:fire_protection", 50);
+    enchantCategoryMap.put("minecraft:flame", 50);
+    enchantCategoryMap.put("minecraft:fortune", 50);
+    enchantCategoryMap.put("minecraft:frost_walker", 50);
+    enchantCategoryMap.put("minecraft:impaling", 50);
+    enchantCategoryMap.put("minecraft:infinity", 1);
+    enchantCategoryMap.put("minecraft:knockback", 50);
+    enchantCategoryMap.put("minecraft:looting", 50);
+    enchantCategoryMap.put("minecraft:loyalty", 50);
+    enchantCategoryMap.put("minecraft:luck_of_the_sea", 50);
+    enchantCategoryMap.put("minecraft:lure", 5);
+    enchantCategoryMap.put("minecraft:mending", 1);
+    enchantCategoryMap.put("minecraft:multishot", 1);
+    enchantCategoryMap.put("minecraft:piercing", 50);
+    enchantCategoryMap.put("minecraft:power", 50);
+    enchantCategoryMap.put("minecraft:projectile_protection", 50);
+    enchantCategoryMap.put("minecraft:protection", 50);
+    enchantCategoryMap.put("minecraft:punch", 50);
+    enchantCategoryMap.put("minecraft:respiration", 50);
+    enchantCategoryMap.put("minecraft:quick_charge", 50);
+    enchantCategoryMap.put("minecraft:riptide", 50);
+    enchantCategoryMap.put("minecraft:sharpness", 50);
+    enchantCategoryMap.put("minecraft:silk_touch", 1);
+    enchantCategoryMap.put("minecraft:smite", 50);
+    enchantCategoryMap.put("minecraft:soul_speed", 10);
+    enchantCategoryMap.put("minecraft:sweeping", 50);
+    enchantCategoryMap.put("minecraft:thorns", 50);
+    enchantCategoryMap.put("minecraft:unbreaking", 50);
 
-    villagerMinMax.put(1, new int[]{1, 5});
-    villagerMinMax.put(5, new int[]{3, 8});
-    villagerMinMax.put(10, new int[]{6, 20});
-    villagerMinMax.put(15, new int[]{10, 410});
+    villagerMinMax.put(1, new int[]{1, 3});
+    villagerMinMax.put(5, new int[]{2, 5});
+    villagerMinMax.put(10, new int[]{3, 10});
+    villagerMinMax.put(15, new int[]{5, 17});
 
     maxAnvilLevel = 60;
     anvilMultiplier = 1.3d;
@@ -89,6 +90,7 @@ public class ConfigInstance {
 
     bypassLanguageFiles = false;
     allowMixedProt = true;
+    allowMixedDamage = false;
 
     costDivider = 7.0;
   }
