@@ -14,6 +14,9 @@ public class HighLevelEnchants implements ModInitializer {
 	public static Logger LOGGER = LogManager.getLogger("high-level-enchants");
 	static Identifier id = new Identifier("high-level-enchants", "crafting_special_cheap_books");
 
+	public static final SpecialRecipeSerializer<CheapBookRecipe> CHEAP_BOOKS =
+			Registry.register(Registry.RECIPE_SERIALIZER, id, new SpecialRecipeSerializer<>(CheapBookRecipe::new));
+
 	@Override
 	public void onInitialize() {
 		LOGGER.info("Loaded High Level Enchants!");
