@@ -34,7 +34,7 @@ public class EnchantmentScreenMixin {
 					for (int y = 0; y < r/2d+1; y++) {
 						if (world.getBlockState(pos.add(x, y, z)).isOf(Blocks.BOOKSHELF)) {
 							BlockPos shelf = pos.add(x-signX, y, z-signZ);
-							if (world.getBlockState(shelf).isFullCube(world, shelf)) {
+							if (!world.getBlockState(shelf).isFullCube(world, shelf)) {
 								books++;
 							}
 						}
