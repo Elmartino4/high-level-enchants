@@ -22,143 +22,128 @@ import java.util.Iterator;
 
 public class BribeVillager {
 
-	private TradeOfferList offerList;
-	private boolean usedgoldBlock;
-	private boolean success;
-	private int tradeIndex;
-	private Random random;
-	private boolean decrementItem;
+    private TradeOfferList offerList;
+    private boolean usedgoldBlock;
+    private boolean success;
+    private int tradeIndex;
+    private Random random;
+    private boolean decrementItem;
 
-	public BribeVillager(TradeOfferList originalList, boolean goldBlock) {
-		this.offerList = new TradeOfferList();
-		this.usedgoldBlock = goldBlock;
-		this.random = new Random();
-		this.success = false;
+    public BribeVillager(TradeOfferList originalList, boolean goldBlock) {
+        this.offerList = new TradeOfferList();
+        this.usedgoldBlock = goldBlock;
+        this.random = new Random();
+        this.success = false;
 
-		try{
-			this.offerList = (TradeOfferList)originalList.clone();
-		}catch(Exception e){
+        try {
+            this.offerList = (TradeOfferList) originalList.clone();
+        } catch (Exception ignored) {
 
-		}
+        }
 
-		this.decrementItem = false;
-		this.tradeIndex = selectBookTrade();
-		doBribe();
-	}
+        this.decrementItem = false;
+        this.tradeIndex = selectBookTrade();
+        doBribe();
+    }
 
-	public boolean getDecrementItem(){
-		return this.decrementItem;
-	}
+    public boolean getDecrementItem() {
+        return this.decrementItem;
+    }
 
-	public boolean isSuccessful(){
-		return this.success;
-	}
+    public boolean isSuccessful() {
+        return this.success;
+    }
 
-	public TradeOfferList getNewList(){
-		return this.offerList;
-	}
+    public TradeOfferList getNewList() {
+        return this.offerList;
+    }
 
-	private void doBribe(){
-		this.success = false;
-		if(this.tradeIndex != -1){
-			this.decrementItem = true;
+    private void doBribe() {
+        this.success = false;
+        if (this.tradeIndex != -1) {
+            this.decrementItem = true;
 
-			int level = getMaxLevel(this.offerList.get(this.tradeIndex));
-			double probability = (this.usedgoldBlock) ? ModConfig.INSTANCE.blockMultiplier/(level+ModConfig.INSTANCE.blockMultiplier) : ModConfig.INSTANCE.ingotMultiplier/(level+ModConfig.INSTANCE.ingotMultiplier);
+            int level = getMaxLevel(this.offerList.get(this.tradeIndex));
+            double probability = (this.usedgoldBlock) ? ModConfig.INSTANCE.blockMultiplier / (level + ModConfig.INSTANCE.blockMultiplier) : ModConfig.INSTANCE.ingotMultiplier / (level + ModConfig.INSTANCE.ingotMultiplier);
 
-			TradeOffer oldOffer = this.offerList.get(this.tradeIndex);
-			if(random.nextDouble() < probability){
-				setNewOffer();
-				this.success = true;
-			}
-		}else{
-			System.out.println("no Trades Found");
-		}
-	}
+            TradeOffer oldOffer = this.offerList.get(this.tradeIndex);
+            if (random.nextDouble() < probability) {
+                setNewOffer();
+                this.success = true;
+            }
+        } else {
+            System.out.println("no Trades Found");
+        }
+    }
 
-	private int selectBookTrade(){
-		ArrayList<Integer> offerIds = new ArrayList<Integer>();
-		for (int i = 0; i < this.offerList.size(); i++) {
-			boolean isValid = true;
-			if(this.offerList.get(i).getSellItem().getItem() == Items.ENCHANTED_BOOK){
-				Map<Enchantment, Integer> enchants = EnchantmentHelper.get(this.offerList.get(i).getSellItem());
-				Set<Enchantment> keys = enchants.keySet();
-				Iterator<Enchantment> iterator = keys.iterator();
-				while (iterator.hasNext()) {
-					Enchantment next = iterator.next();
-					//System.out.println(next.getTranslationKey());
-					//System.out.println(getExpFromIndex(i));
-					int level = enchants.get(next);
-					if(level >= ModConfig.INSTANCE.enchantCategoryMap.get(next.getTranslationKey()) || level >= ModConfig.INSTANCE.villagerMinMax.get(getExpFromIndex(i))[1])
-						isValid = false;
-				}
-			}else{ isValid = false; }
-			if(isValid)
-				offerIds.add(i);
-		}
+    private int selectBookTrade() {
+        ArrayList<Integer> offerIds = new ArrayList<Integer>();
+        for (int i = 0; i < this.offerList.size(); i++) {
+            boolean isValid = true;
+            if (this.offerList.get(i).getSellItem().getItem() == Items.ENCHANTED_BOOK) {
+                Map<Enchantment, Integer> enchants = EnchantmentHelper.get(this.offerList.get(i).getSellItem());
+                Set<Enchantment> keys = enchants.keySet();
+                for (Enchantment next : keys) {
+                    //System.out.println(next.getTranslationKey());
+                    //System.out.println(getExpFromIndex(i));
+                    int level = enchants.get(next);
+                    if (level >= ModConfig.INSTANCE.enchantCategoryMap.get(next.getTranslationKey()) || level >= ModConfig.INSTANCE.villagerMinMax.get(getExpFromIndex(i))[1])
+                        isValid = false;
+                }
+            } else {
+                isValid = false;
+            }
+            if (isValid)
+                offerIds.add(i);
+        }
 
-		if(offerIds.size() != 0)
-			return offerIds.get(this.random.nextInt(offerIds.size()));
-		return -1;
-	}
+        if (offerIds.size() != 0)
+            return offerIds.get(this.random.nextInt(offerIds.size()));
+        return -1;
+    }
 
-	private static int getMaxLevel(TradeOffer offer){
-		int out = 0;
-		Map<Enchantment, Integer> enchants = EnchantmentHelper.get(offer.getSellItem());
-		Set<Enchantment> keys = enchants.keySet();
-		Iterator<Enchantment> i = keys.iterator();
-		while (i.hasNext()) {
-			int level = enchants.get(i.next());
-			if(level > out)
-				out = level;
-		}
-		return out;
-	}
+    private static int getMaxLevel(TradeOffer offer) {
+        int out = 0;
+        Map<Enchantment, Integer> enchants = EnchantmentHelper.get(offer.getSellItem());
+        Set<Enchantment> keys = enchants.keySet();
+        Iterator<Enchantment> i = keys.iterator();
+        while (i.hasNext()) {
+            int level = enchants.get(i.next());
+            if (level > out)
+                out = level;
+        }
+        return out;
+    }
 
-	private void setNewOffer(){
-		TradeOffer oldOffer = this.offerList.get(this.tradeIndex);
+    private void setNewOffer() {
+        TradeOffer oldOffer = this.offerList.get(this.tradeIndex);
 
-		Map<Enchantment, Integer> enchants = EnchantmentHelper.get(oldOffer.getSellItem());
-		Set<Enchantment> keys = enchants.keySet();
-		Iterator<Enchantment> i = keys.iterator();
-		while (i.hasNext()) {
-			Enchantment next = i.next();
-			int level = enchants.get(next) + 1;
-		  enchants.put(next, level);
-		}
-		ItemStack sellItem = new ItemStack((ItemConvertible)Items.ENCHANTED_BOOK);
+        Map<Enchantment, Integer> enchants = EnchantmentHelper.get(oldOffer.getSellItem());
+        Set<Enchantment> keys = enchants.keySet();
+        for (Enchantment next : keys) {
+            int level = enchants.get(next) + 1;
+            enchants.put(next, level);
+        }
+        ItemStack sellItem = new ItemStack((ItemConvertible) Items.ENCHANTED_BOOK);
 
-		EnchantmentHelper.set(enchants, sellItem);
+        EnchantmentHelper.set(enchants, sellItem);
 
-		this.offerList.set(this.tradeIndex, new TradeOffer(
-			oldOffer.getOriginalFirstBuyItem(),
-			oldOffer.getSecondBuyItem(),
-			sellItem,
-			oldOffer.getMaxUses(),
-			oldOffer.getMerchantExperience(),
-			oldOffer.getPriceMultiplier()
-		));
-	}
+        this.offerList.set(this.tradeIndex, new TradeOffer(
+                oldOffer.getOriginalFirstBuyItem(),
+                oldOffer.getSecondBuyItem(),
+                sellItem,
+                oldOffer.getMaxUses(),
+                oldOffer.getMerchantExperience(),
+                oldOffer.getPriceMultiplier()
+        ));
+    }
 
-	private static int getExpFromIndex(int index){
-		switch(index){
-			case 0:
-				return 1;
-			case 1:
-				return 1;
-			case 2:
-				return 5;
-			case 3:
-				return 5;
-			case 4:
-				return 10;
-			case 5:
-				return 10;
-			case 6:
-				return 15;
-			case 7:
-				return 15;
-		}
-		return 1;
-	}
+    private static int getExpFromIndex(int index) {
+        return switch (index) {
+            case 2, 3 -> 5;
+            case 4, 5 -> 10;
+            case 6, 7 -> 15;
+            default -> 1;
+        };
+    }
 }
