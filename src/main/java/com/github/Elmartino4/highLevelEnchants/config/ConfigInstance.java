@@ -73,10 +73,10 @@ public class ConfigInstance {
 
     villagerMinMax.put(1, new int[]{1, 3});
     villagerMinMax.put(5, new int[]{2, 5});
-    villagerMinMax.put(10, new int[]{3, 10});
-    villagerMinMax.put(15, new int[]{5, 17});
+    villagerMinMax.put(10, new int[]{3, 9});
+    villagerMinMax.put(15, new int[]{5, 25});
 
-    maxAnvilLevel = 60;
+    maxAnvilLevel = 40;
     anvilMultiplier = 1.3d;
 
     bookshelfPower = 8;
@@ -88,7 +88,7 @@ public class ConfigInstance {
     tradePowerConst = 20;
     tradePowerDiv = 270;
 
-    bypassLanguageFiles = false;
+    bypassLanguageFiles = true;
     allowMixedProt = true;
     allowMixedDamage = false;
 

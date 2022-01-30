@@ -2,6 +2,8 @@ package com.github.Elmartino4.highLevelEnchants.mixin;
 
 import com.github.Elmartino4.highLevelEnchants.config.ModConfig;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -31,7 +33,8 @@ public class EnchantmentScreenMixin {
 					int signZ = Integer.signum(z);
 					for (int y = 0; y < r/2d+1; y++) {
 						if (world.getBlockState(pos.add(x, y, z)).isOf(Blocks.BOOKSHELF)) {
-							if (world.isAir(pos.add(x-signX, y, z-signZ))) {
+							BlockPos shelf = pos.add(x-signX, y, z-signZ);
+							if (world.getBlockState(shelf).isFullCube(world, shelf)) {
 								books++;
 							}
 						}
@@ -47,6 +50,7 @@ public class EnchantmentScreenMixin {
 				)
 				*(ModConfig.INSTANCE.bookshelfMultiplier) + books/(double)(ModConfig.INSTANCE.bookshelfDivConst)
 			);
+
 		//System.out.println("Enchant scn finish");
 		return level;
 	}

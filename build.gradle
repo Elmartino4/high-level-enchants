@@ -12,6 +12,12 @@ group = project.maven_group
 
 repositories {
 	maven { url "https://maven.shedaniel.me/" }
+
+	maven {
+		name = "CottonMC"
+		url = "https://server.bbkr.space/artifactory/libs-release"
+	}
+	maven { url 'https://jitpack.io' }
 }
 
 minecraft {
@@ -26,6 +32,9 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// This is for Compatability with darkenchanter
+	modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 }
 
 processResources {

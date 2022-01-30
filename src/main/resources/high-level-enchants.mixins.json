@@ -5,19 +5,21 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "AnvilHandlerMixin",
-    "EnchantedBookItemMixin",
-    "EnchantmentClassMixin",
-    "EnchantmentHelperMixin",
-    "TradeOffersMixin",
-    "EnchantLootMixin",
-    "EnchantmentScreenMixin",
-    "VillagerEntityMixin",
-    "RecipesProviderMixin",
     "DamageUtilMixin",
+    "EnchantedBookItemMixin",
+    "EnchantLootMixin",
+    "EnchantmentClassMixin",
     "EnchantmentCommandMixin",
-    "ItemStackMixin"
+    "EnchantmentHelperMixin",
+    "EnchantmentScreenMixin",
+    "ItemStackMixin",
+    "TradeOffersMixin",
+    "VillagerEntityMixin",
+    "darkenchants.DarkEnchanterGUIMixin",
+    "language.TranslatableTextMixin"
   ],
   "client": [
+    "language.I18nMixin"
   ],
   "injectors": {
     "defaultRequire": 1
