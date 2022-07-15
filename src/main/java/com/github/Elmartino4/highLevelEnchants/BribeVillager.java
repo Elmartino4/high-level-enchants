@@ -4,6 +4,7 @@ import com.github.Elmartino4.highLevelEnchants.config.ModConfig;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 
@@ -87,7 +88,7 @@ public class BribeVillager {
                     //System.out.println(next.getTranslationKey());
                     //System.out.println(getExpFromIndex(i));
                     int level = enchants.get(next);
-                    if (level >= ModConfig.INSTANCE.enchantCategoryMap.get(next.getTranslationKey()) || level >= ModConfig.INSTANCE.villagerMinMax.get(getExpFromIndex(i))[1])
+                    if (level >= ModConfig.INSTANCE.enchantCategoryMap.get(Registry.ENCHANTMENT.getId(next)) || level >= ModConfig.INSTANCE.villagerMinMax.get(getExpFromIndex(i))[1])
                         isValid = false;
                 }
             } else {
